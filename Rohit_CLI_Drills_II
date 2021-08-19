@@ -1,0 +1,148 @@
+//PIPES
+
+// 1: Downloading given file
+
+mkdir Rohit_CLI_Drills_II
+cd Rohit_CLI_Drills_II
+curl -OL https://raw.githubusercontent.com/bobdeng/owlreader/master/ERead/assets/books/Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt
+ls -rtl
+
+//2: Printing the first three lines in the book
+
+head -4 Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt
+
+//3: printing the last 10 lines from the book
+
+tail Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt
+
+//4: Counting how many times Harry word appear in given file
+
+
+grep -o Harry Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt | wc -l
+// 3169 times Harry appears in given file
+
+//Ron
+grep -o Ron Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt | wc -l
+// 1044 times Ron appears
+
+//Hermione
+grep - o  Hermione Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt | wc -l
+// 872 times Hermiones appears
+
+//Dumbledore
+grep -o Dumbledore Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt | wc -l
+// 595 times Dumbledore appears
+
+//5: Printing lines from 100 through 200
+
+ sed -n '100, 200p;201q' Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt
+ 
+ //6: unique character
+ 
+ awk -F '[^[:alnum:]_]+' '{ for (i=1; i<=NF; ++i) { a[tolower($i)]++ } } END { print length(a) - ("" in a) }' Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt
+        
+//10226 unique word
+
+//unigue words
+cat Harry%20Potter%20and%20the%20Goblet%20of%20Fire.txt | grep -o -E '\w+' | tr '[A-Z]' '[a-z]' | sort | uniq -c | sort -nr | wc -l
+// 10230 words
+
+
+//PROCESS AND PORTS
+//1: PID for browser and ppid
+
+ps -aux | grep chromuim-browser | tr -s ' ' | cut -d ' ' -f 2
+
+//pid : 4894
+//ppid
+
+echo $PPID
+
+//2600
+
+//2: Stop the browser application from the command line
+//To stop particular application we can use pid and kill it
+
+ps aux | grep chrome
+
+kill -9 pid
+
+//if we want to kill all the browser application
+
+pkill chrome
+
+//3 : Top 3 process by CPU usage
+
+top
+//chrome, genome-shell, Xorg
+
+//4 : Top 3 process by memeory usage
+
+top
+//chrome, genome-shell, Xorg
+
+//5: Start a Python HTTP server on port 8000
+
+python3 -m http.server
+
+//6:open new tap and close previous tap
+
+ps aux | grep chrome
+
+kill -9 9454
+
+//7 : tart a Python HTTP server on port 90
+
+sudo python3 -m http.server 90
+
+//display all tcp and udp ports
+//for tcp ports
+
+netstat -at
+
+//for UDP ports
+
+netstat -au
+
+//8:
+Find the pid of the process that is listening on port 5432
+
+python3 -m http.server 5432
+
+ps aux  grep chrome
+
+//pid 10767
+
+//managaing Software
+
+snap install htop
+sudo apt install vim
+sudo apt install nginx
+//unstalling nginx
+
+sudo apt purge nginx
+
+//Misc
+
+//local ip address
+hostname -I
+//Finding ip adress of google.com
+
+nslookup -q=TXT _spf.google.com 8.8.8.8
+
+//To check internet is working using cli
+ping google.com
+
+//Where node command located and about code
+which node
+
+ /snap/bin/node
+
+//About code
+which code
+ /snap/bin/code
+
+
+
+
+
